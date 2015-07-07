@@ -1,0 +1,243 @@
+{
+  "$schema": "http://interagent.github.io/interagent-hyper-schema",
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "assessment-point": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Assessment Point",
+      "description": "Represents a point where assessments take place.",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "name": {
+          "description": "human readable name",
+          "readOnly": false,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/assessment-point/definitions/id"
+        },
+        "created_at": {
+          "description": "when assessment_point was created",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when assessment_point was last updated",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new assessment_point.",
+          "href": "/api/assessment_points",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing assessment_point.",
+          "href": "/api/assessment_points/{(%23%2Fdefinitions%2Fassessment-point%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "title": "Delete"
+        },
+        {
+          "description": "Info for existing assessment_point.",
+          "href": "/api/assessment_points/{(%23%2Fdefinitions%2Fassessment-point%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "List existing assessment_points.",
+          "href": "/api/assessment_points",
+          "method": "GET",
+          "rel": "instances",
+          "title": "Update"
+        }
+      ],
+      "properties": {
+        "created_at": {
+          "$ref": "#/definitions/assessment-point/definitions/created_at"
+        },
+        "id": {
+          "$ref": "#/definitions/assessment-point/definitions/id"
+        },
+        "name": {
+          "$ref": "#/definitions/assessment-point/definitions/name"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/assessment-point/definitions/updated_at"
+        }
+      }
+    },
+    "grade-set": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Grade Set",
+      "description": "A Grade Set groups a set of commonly scaled grades for comparison.",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "name": {
+          "description": "human readable name",
+          "readOnly": false,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/grade-set/definitions/id"
+        },
+        "created_at": {
+          "description": "when grade_set was created",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when grade_set was updated",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "grades": {
+          "description": "list of grades",
+          "type": [
+            "array"
+          ],
+          "items": {
+            "$ref": "#/definitions/grade-set/definitions/grade"
+          }
+        },
+        "grade": {
+          "description": "represents a scaled grade",
+          "type": [
+            "object"
+          ],
+          "properties": {
+            "name": {
+              "$ref": "#/definitions/grade-set/definitions/grade_name"
+            },
+            "value": {
+              "$ref": "#/definitions/grade-set/definitions/grade_value"
+            }
+          },
+          "required": [
+            "grade_name",
+            "grade_value"
+          ]
+        },
+        "grade_name": {
+          "description": "the commonally used human name for this grade",
+          "readOnly": false,
+          "type": [
+            "string"
+          ]
+        },
+        "grade_value": {
+          "description": "the scaled point value for this grade",
+          "readOnly": false,
+          "type": [
+            "integer"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new grade_set.",
+          "href": "/api/grade_sets",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Info for existing grade_set.",
+          "href": "/api/grade_sets/{(%23%2Fdefinitions%2Fgrade-set%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        }
+      ],
+      "properties": {
+        "created_at": {
+          "$ref": "#/definitions/grade-set/definitions/created_at"
+        },
+        "id": {
+          "$ref": "#/definitions/grade-set/definitions/id"
+        },
+        "name": {
+          "$ref": "#/definitions/grade-set/definitions/name"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/grade-set/definitions/updated_at"
+        },
+        "grades": {
+          "$ref": "#/definitions/grade-set/definitions/grades"
+        }
+      }
+    }
+  },
+  "properties": {
+    "assessment-point": {
+      "$ref": "#/definitions/assessment-point"
+    },
+    "grade-set": {
+      "$ref": "#/definitions/grade-set"
+    }
+  },
+  "description": "API access to education data.",
+  "id": "assembly-education",
+  "links": [
+    {
+      "href": "https://assembly.education",
+      "rel": "self"
+    }
+  ],
+  "title": "Project Assembly API"
+}
