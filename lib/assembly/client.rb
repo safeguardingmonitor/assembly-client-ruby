@@ -73,7 +73,7 @@ module Assembly
 
   # Get the default options.
   def self.default_options
-    default_headers = {}
+    default_headers = {"Accept"=>"application/json"}
     cache = Moneta.new(:Memory)
     {
       default_headers: default_headers,
