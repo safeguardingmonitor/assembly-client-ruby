@@ -8,9 +8,11 @@ namespace :client do
     FileUtils.cp(src_schema_path, dest_schema_path)
   end
 
-  task :update => :copy_schema do
+  task :build do
     schema_path = File.join(__dir__, 'lib/assembly/schema.json')
     client_path = File.join(__dir__, 'lib/assembly/client.rb')
     sh "bundle exec heroics-generate Assembly #{schema_path} http://platform.assembly.education > #{client_path}"
   end
+
+  task update: ['client:copy_schema', 'client:build']
 end

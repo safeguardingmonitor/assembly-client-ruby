@@ -395,15 +395,15 @@ module Assembly
       "$ref": "#/definitions/grade-set"
     }
   },
-  "description": "API access to education data.",
   "id": "assembly-education",
+  "title": "Project Assembly API",
+  "description": "API access to education data.",
   "links": [
     {
       "href": "https://assembly.education",
       "rel": "self"
     }
-  ],
-  "title": "Project Assembly API"
+  ]
 }
 HEROICS_SCHEMA
 end
