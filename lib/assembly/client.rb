@@ -103,6 +103,13 @@ module Assembly
     def grade_set
       @grade_set_resource ||= GradeSet.new(@client)
     end
+
+    # Represents a member of staff within a school, most commonly but not allways, a teacher.
+    #
+    # @return [StaffMember]
+    def staff_member
+      @staff_member_resource ||= StaffMember.new(@client)
+    end
   end
 
   private
@@ -158,6 +165,25 @@ module Assembly
     # @param grade_set_identity: 
     def info(grade_set_identity)
       @client.grade_set.info(grade_set_identity)
+    end
+  end
+
+  # Represents a member of staff within a school, most commonly but not allways, a teacher.
+  class StaffMember
+    def initialize(client)
+      @client = client
+    end
+
+    # Create a new staff_member.
+    #
+    # @param body: the object to pass as the request payload
+    def create(body)
+      @client.staff_member.create(body)
+    end
+
+    # List existing staff members.
+    def list()
+      @client.staff_member.list()
     end
   end
 
@@ -385,6 +411,126 @@ module Assembly
           "$ref": "#/definitions/grade-set/definitions/grades"
         }
       }
+    },
+    "staff-member": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Staff Member",
+      "description": "Represents a member of staff within a school, most commonly but not allways, a teacher.",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "first_name": {
+          "description": "persons first name",
+          "readOnly": false,
+          "type": [
+            "string"
+          ]
+        },
+        "middle_name": {
+          "description": "persons middle name",
+          "readOnly": false,
+          "type": [
+            "string"
+          ]
+        },
+        "last_name": {
+          "description": "persons last name",
+          "readOnly": false,
+          "type": [
+            "string"
+          ]
+        },
+        "title": {
+          "description": "persons title",
+          "readOnly": false,
+          "type": [
+            "string"
+          ]
+        },
+        "email": {
+          "description": "persons email address",
+          "readOnly": false,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/staff-member/definitions/id"
+        },
+        "created_at": {
+          "description": "when staff member was created",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when staff member was updated",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new staff_member.",
+          "href": "/api/staff_member",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "List existing staff members.",
+          "href": "/staff_member",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "created_at": {
+          "$ref": "#/definitions/staff-member/definitions/created_at"
+        },
+        "id": {
+          "$ref": "#/definitions/staff-member/definitions/id"
+        },
+        "first_name": {
+          "$ref": "#/definitions/staff-member/definitions/first_name"
+        },
+        "middle_name": {
+          "$ref": "#/definitions/staff-member/definitions/middle_name"
+        },
+        "last_name": {
+          "$ref": "#/definitions/staff-member/definitions/last_name"
+        },
+        "title": {
+          "$ref": "#/definitions/staff-member/definitions/title"
+        },
+        "email": {
+          "$ref": "#/definitions/staff-member/definitions/email"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/staff-member/definitions/updated_at"
+        }
+      }
     }
   },
   "properties": {
@@ -393,6 +539,9 @@ module Assembly
     },
     "grade-set": {
       "$ref": "#/definitions/grade-set"
+    },
+    "staff-member": {
+      "$ref": "#/definitions/staff-member"
     }
   },
   "id": "assembly-education",
