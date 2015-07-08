@@ -40,7 +40,7 @@ module Assembly
   end
 
   def self.configure(options={})
-    self.config ||= Config.new(options)
+    self.config = Config.new(options)
     yield(self.config) if block_given?
     self.config
   end
