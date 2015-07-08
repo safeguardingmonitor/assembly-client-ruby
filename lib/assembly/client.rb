@@ -174,13 +174,6 @@ module Assembly
       @client = client
     end
 
-    # Create a new staff_member.
-    #
-    # @param body: the object to pass as the request payload
-    def create(body)
-      @client.staff_member.create(body)
-    end
-
     # List existing staff members.
     def list()
       @client.staff_member.list()
@@ -484,22 +477,8 @@ module Assembly
       },
       "links": [
         {
-          "description": "Create a new staff_member.",
-          "href": "/api/staff_member",
-          "method": "POST",
-          "rel": "create",
-          "schema": {
-            "properties": {
-            },
-            "type": [
-              "object"
-            ]
-          },
-          "title": "Create"
-        },
-        {
           "description": "List existing staff members.",
-          "href": "/staff_member",
+          "href": "/api/staff_members",
           "method": "GET",
           "rel": "instances",
           "title": "List"

@@ -294,22 +294,8 @@
       },
       "links": [
         {
-          "description": "Create a new staff_member.",
-          "href": "/api/staff_member",
-          "method": "POST",
-          "rel": "create",
-          "schema": {
-            "properties": {
-            },
-            "type": [
-              "object"
-            ]
-          },
-          "title": "Create"
-        },
-        {
           "description": "List existing staff members.",
-          "href": "/staff_member",
+          "href": "/api/staff_members",
           "method": "GET",
           "rel": "instances",
           "title": "List"
