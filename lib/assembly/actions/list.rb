@@ -6,6 +6,7 @@ module Assembly
           response = client.get(path)
           Util.build(response, client)
         end
+        alias_method :list, :all
       end
 
       def self.included(base)
