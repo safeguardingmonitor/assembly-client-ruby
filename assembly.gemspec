@@ -6,11 +6,11 @@ require 'assembly/version'
 Gem::Specification.new do |spec|
   spec.name          = "assembly"
   spec.version       = Assembly::VERSION
-  spec.authors       = ["Project Assembly"]
-  spec.email         = ["developers@neonadventures.com"]
+  spec.authors       = ["Andy Kent"]
+  spec.email         = ["andy.kent@me.com"]
 
-  spec.summary       = %q{API client for the Project Assembly Platform}
-  #spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Write a short summary, because Rubygems requires one.}
+  spec.description   = %q{Write a longer description or delete this line.}
   spec.homepage      = "http://platform.assembly.education"
   spec.license       = "MIT"
 
@@ -27,8 +27,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "heroics"
+  spec.add_dependency "faraday",            "> 0.9.0"
+  spec.add_dependency "faraday_middleware", "> 0.9.0"
 
-  spec.add_development_dependency "bundler", "~> 1.9"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "bundler",            "~> 1.9"
+  spec.add_development_dependency "rake",               "~> 10.0"
+  spec.add_development_dependency "mocha",              "~> 1.1.0"
+  spec.add_development_dependency "webmock",            "~> 1.21.0"
+  spec.add_development_dependency "guard",              "~> 2.12.5"
+  spec.add_development_dependency "guard-minitest",     "~> 2.4.4"
+  spec.add_development_dependency "minitest-reporters", "~> 1.0"
 end
