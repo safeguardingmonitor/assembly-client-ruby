@@ -3,7 +3,7 @@ module Assembly
     attr_accessor :host, :token
 
     def initialize(options={})
-      @host = "http://platform.assembly.education"
+      @host = "https://platform.assembly.education"
       merge(options)
     end
 
