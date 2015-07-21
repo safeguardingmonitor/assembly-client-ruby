@@ -14,16 +14,19 @@ module Assembly
 
     def post(url, params={})
       response = @api.post url, params.to_json
+      check_errors(response)
       response.body
     end
 
     def put(url, params={})
       response = @api.put url, params.to_json
+      check_errors(response)
       response.body
     end
 
     def delete(url)
       response = @api.delete url
+      check_errors(response)
       response.status == 200
     end
 
@@ -38,8 +41,8 @@ module Assembly
     private
 
     def check_errors(response)
-      raise Assembly::ServerError.new(response) if response.status > 500
-      raise Assembly::NotFoundError.new(response) if response.status > 400
+      raise Assembly::ServerError.new(response) if response.status >= 500
+      raise Assembly::NotFoundError.new(response) if response.status >= 400
       true
     end
 
