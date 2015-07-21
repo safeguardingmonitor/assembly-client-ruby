@@ -6,6 +6,8 @@ module Assembly
 
     def self.models
       {
+        list: List,
+
         assessment_point: AssessmentPoint,
         grade_set: GradeSet,
         grade: Grade,
