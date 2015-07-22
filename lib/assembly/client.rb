@@ -38,6 +38,11 @@ module Assembly
       Assembly::AssessmentPointResource.new(self)
     end
 
+    def aspect
+      Assembly::AspectResource.new(self)
+    end
+
+
     private
 
     def check_errors(response)

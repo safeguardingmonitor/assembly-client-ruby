@@ -21,6 +21,7 @@ require 'assembly/models/list'
 require 'assembly/models/grade'
 require 'assembly/models/grade_set'
 require 'assembly/models/assessment_point'
+require 'assembly/models/aspect'
 
 module Assembly
   @config = Config.new

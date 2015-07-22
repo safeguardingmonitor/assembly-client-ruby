@@ -13,17 +13,17 @@ module Assembly
       @dirty_values = Set.new
     end
 
-    def merge(values)
+    def merge(values, client=nil)
       added = Set.new(values.keys - @values.keys)
       add_accessors(added)
       values.each do |k, v|
-        @values[k] = Util.build(v)
+        @values[k] = Util.build(v, client)
       end
       self
     end
 
     def self.construct_from(response, client=nil)
-      new(response[:id], client).merge(response)
+      new(response[:id], client).merge(response, client)
     end
 
     def update_from(response)
