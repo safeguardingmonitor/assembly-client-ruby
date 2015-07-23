@@ -52,6 +52,7 @@ module Assembly
     def check_errors(response)
       raise Assembly::ServerError.new(response) if response.status >= 500
       raise Assembly::UnauthorizedError.new(response) if response.status == 401
+      raise Assembly::ValidationError.new(response) if response.status == 422
       raise Assembly::NotFoundError.new(response) if response.status >= 400
       true
     end
@@ -88,6 +89,17 @@ module Assembly
   end
 
   class UnauthorizedError < ServerError
+  end
+
+  class ValidationError < ServerError
+    def errors
+      @response.body[:errors]
+    end
+
+
+    def to_s
+      "#{super} - #{errors.inspect}"
+    end
   end
 end
 
