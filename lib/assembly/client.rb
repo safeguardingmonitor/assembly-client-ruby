@@ -30,16 +30,20 @@ module Assembly
       response.status == 200
     end
 
-    def grade_set
+    def grade_sets
       Assembly::GradeSetResource.new(self)
     end
 
-    def assessment_point
+    def assessment_points
       Assembly::AssessmentPointResource.new(self)
     end
 
-    def aspect
+    def aspects
       Assembly::AspectResource.new(self)
+    end
+
+    def results
+      Assembly::ResultResource.new(self)
     end
 
 
@@ -47,6 +51,7 @@ module Assembly
 
     def check_errors(response)
       raise Assembly::ServerError.new(response) if response.status >= 500
+      raise Assembly::UnauthorizedError.new(response) if response.status == 401
       raise Assembly::NotFoundError.new(response) if response.status >= 400
       true
     end
@@ -80,6 +85,9 @@ module Assembly
   end
 
   class NotFoundError < ServerError
+  end
+
+  class UnauthorizedError < ServerError
   end
 end
 

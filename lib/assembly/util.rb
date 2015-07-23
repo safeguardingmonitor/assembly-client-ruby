@@ -12,6 +12,7 @@ module Assembly
         grade_set: GradeSet,
         grade: Grade,
         aspect: Aspect,
+        result: Result,
       }
     end
 
