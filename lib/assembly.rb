@@ -23,6 +23,8 @@ require 'assembly/models/grade_set'
 require 'assembly/models/assessment_point'
 require 'assembly/models/aspect'
 require 'assembly/models/result'
+require 'assembly/models/teaching_group'
+require 'assembly/models/student'
 
 module Assembly
   @config = Config.new

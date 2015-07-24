@@ -46,6 +46,14 @@ module Assembly
       Assembly::ResultResource.new(self)
     end
 
+    def teaching_groups
+      Assembly::TeachingGroupResource.new(self)
+    end
+
+    def students
+      Assembly::StudentResource.new(self)
+    end
+
 
     private
 

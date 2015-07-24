@@ -13,6 +13,8 @@ module Assembly
         grade: Grade,
         aspect: Aspect,
         result: Result,
+        teaching_group: TeachingGroup,
+        student: Student,
       }
     end
 
