@@ -25,6 +25,7 @@ require 'assembly/models/aspect'
 require 'assembly/models/result'
 require 'assembly/models/teaching_group'
 require 'assembly/models/student'
+require 'assembly/models/staff_member'
 
 module Assembly
   @config = Config.new

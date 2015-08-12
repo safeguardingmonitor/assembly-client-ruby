@@ -7,7 +7,6 @@ module Assembly
     def self.models
       {
         list: List,
-
         assessment_point: AssessmentPoint,
         grade_set: GradeSet,
         grade: Grade,
@@ -15,6 +14,7 @@ module Assembly
         result: Result,
         teaching_group: TeachingGroup,
         student: Student,
+        staff_member: StaffMember,
       }
     end
 

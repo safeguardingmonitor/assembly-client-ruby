@@ -54,6 +54,10 @@ module Assembly
       Assembly::StudentResource.new(self)
     end
 
+    def staff_members
+      Assembly::StaffMemberResource.new(self)
+    end
+
 
     private
 
