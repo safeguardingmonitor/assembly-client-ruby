@@ -1,6 +1,6 @@
 module Assembly
   class Config
-    attr_accessor :host, :token
+    attr_accessor :host, :token, :refresh_token
 
     def initialize(options={})
       @host = "https://platform.assembly.education"

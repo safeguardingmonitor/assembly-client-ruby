@@ -108,7 +108,6 @@ module Assembly
       @response.body[:errors]
     end
 
-
     def to_s
       "#{super} - #{errors.inspect}"
     end
