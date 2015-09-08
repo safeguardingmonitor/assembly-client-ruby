@@ -34,10 +34,13 @@ module Assembly
         end
 
         if model_class.included_modules.include?(Assembly::Actions::List)
-          def all
-            model_class.list(@client)
+          def list(params={})
+            model_class.list(params, @client)
           end
-          alias_method :list, :all
+
+          def all(params={})
+            model_class.all(params, @client)
+          end
         end
 
         if model_class.included_modules.include?(Assembly::Actions::Update)

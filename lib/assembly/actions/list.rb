@@ -2,11 +2,21 @@ module Assembly
   module Actions
     module List
       module ClassMethods
-        def all(client=Assembly.client)
-          response = client.get(path)
+        def list(params, client=Assembly.client)
+          response = client.get(path, params)
           Util.build(response, client)
         end
-        alias_method :list, :all
+
+        def all(params, client=Assembly.client)
+          results = []
+          page = 1
+          while page
+            ret = list({page: page, per_page: 100}.merge(params), client)
+            results += ret.data
+            page = ret.next_page
+          end
+          results
+        end
       end
 
       def self.included(base)

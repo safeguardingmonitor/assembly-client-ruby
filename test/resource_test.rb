@@ -18,9 +18,15 @@ describe Assembly::Resource do
   end
 
   it "allows listing records" do
-    Assembly::ApiTestModel.expects(:list).with(client).returns([model])
+    Assembly::ApiTestModel.expects(:list).with({}, client).returns([model])
     resource = Assembly::Resource.resource_class_for(Assembly::ApiTestModel).new(client)
     assert_equal [model], resource.list
+  end
+
+  it "allows listing all records" do
+    Assembly::ApiTestModel.expects(:all).with({}, client).returns([model])
+    resource = Assembly::Resource.resource_class_for(Assembly::ApiTestModel).new(client)
+    assert_equal [model], resource.all
   end
 
   it "allows deleting a record" do
