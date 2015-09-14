@@ -17,6 +17,12 @@ describe Assembly::Resource do
     assert_equal model, resource.create(record)
   end
 
+  it "allows counting records" do
+    Assembly::ApiTestModel.expects(:total_count).with({}, client).returns(1)
+    resource = Assembly::Resource.resource_class_for(Assembly::ApiTestModel).new(client)
+    assert_equal 1, resource.total_count
+  end
+
   it "allows listing records" do
     Assembly::ApiTestModel.expects(:list).with({}, client).returns([model])
     resource = Assembly::Resource.resource_class_for(Assembly::ApiTestModel).new(client)

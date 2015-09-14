@@ -17,6 +17,10 @@ module Assembly
           end
           results
         end
+
+        def total_count(params={}, client=Assembly.client)
+          list({per_page: 1}.merge(params), client).total_count
+        end
       end
 
       def self.included(base)

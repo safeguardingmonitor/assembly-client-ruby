@@ -41,6 +41,10 @@ module Assembly
           def all(params={})
             model_class.all(params, @client)
           end
+
+          def total_count(params={})
+            model_class.total_count(params, @client)
+          end
         end
 
         if model_class.included_modules.include?(Assembly::Actions::Update)
