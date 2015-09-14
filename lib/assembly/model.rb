@@ -3,6 +3,8 @@ module Assembly
     include Enumerable
 
     undef :id if method_defined?(:id)
+    undef :name if method_defined?(:name)
+
     attr_reader :id
     attr_reader :client
 
@@ -91,6 +93,7 @@ module Assembly
       metaclass.instance_eval do
         keys.each do |k|
           next if k == :id
+          next if instance_methods(false).include?(k)
           k_eq = :"#{k}="
           define_method(k) { @values[k] }
           define_method(k_eq) do |v|
