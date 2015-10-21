@@ -3,8 +3,8 @@ module Assembly
     include Assembly::Actions::Read
     include Assembly::Actions::List
 
-    def students
-      response = client.get(path + '/students')
+    def students(params={})
+      response = client.get(path + '/students', params)
       Util.build(response, client)
     end
   end
