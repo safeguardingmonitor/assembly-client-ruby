@@ -12,4 +12,11 @@ describe Assembly::Model do
   it "has a resource path for an instance based on the class name and instance id" do
     assert_equal "/api/api_test_models/1", model.path
   end
+
+  it "raises if a nil id is passed" do
+    assert_raises(ArgumentError) { Assembly::ApiTestModel.fetch(nil) }
+  end
+  it "raises if a blank id is passed" do
+    assert_raises(ArgumentError) { Assembly::ApiTestModel.fetch('') }
+  end
 end

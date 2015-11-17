@@ -3,6 +3,7 @@ module Assembly
     module Read
       module ClassMethods
         def fetch(id, client=Assembly.client)
+          raise ArgumentError.new("an id must be provided to fetch a record") if id.nil? || id.to_s.empty?
           response = client.get("#{path}/#{id}")
           Util.build(response, client)
         end
