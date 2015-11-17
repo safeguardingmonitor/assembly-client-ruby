@@ -127,7 +127,12 @@ module Assembly
     end
 
     def message
-      @response.body[:message]
+      body = @response.body
+      if body && body.length > 0
+        body[:message]
+      else
+        "No Error Message - Server response body was empty."
+      end
     end
 
     def to_s
