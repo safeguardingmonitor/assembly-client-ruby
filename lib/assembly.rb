@@ -26,7 +26,6 @@ require 'assembly/models/result'
 require 'assembly/models/teaching_group'
 require 'assembly/models/student'
 require 'assembly/models/staff_member'
-require 'assembly/middleware/request_version'
 
 module Assembly
   @config = Config.new
