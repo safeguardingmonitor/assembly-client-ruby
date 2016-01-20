@@ -7,3 +7,10 @@
 /pkg/
 /spec/reports/
 /tmp/
+
+# Ignore IntelliJ files
+.generators
+.rakeTasks
+*.iml
+.idea
+
