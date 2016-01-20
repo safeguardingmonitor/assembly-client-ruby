@@ -114,8 +114,7 @@ module Assembly
         faraday.response :json
         faraday.adapter  Faraday.default_adapter
       end
-
-      @api.headers['Accept'] = "application/vnd.assembly+json; version=#{config.api_version}".freeze
+      @api.headers[:accept] = "application/vnd.assembly+json; version=#{config.api_version}".freeze
     end
   end
 
