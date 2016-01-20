@@ -112,6 +112,8 @@ module Assembly
         faraday.request  :json
         faraday.request  :oauth2, config.token
         faraday.response :json
+
+        faraday.use Assembly::Middleware::RequestVersion, version: config.api_version
         faraday.adapter  Faraday.default_adapter
       end
     end
