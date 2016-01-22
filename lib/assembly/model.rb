@@ -90,17 +90,19 @@ module Assembly
     end
 
     def add_accessors(keys)
-      metaclass.instance_eval do
-        keys.each do |k|
-          next if k == :id
-          next if instance_methods(false).include?(k)
-          k_eq = :"#{k}="
-          define_method(k) { @values[k] }
-          define_method(k_eq) do |v|
-            @values[k] = v
-            @dirty_values.add(k)
+      keys.each do |k|
+        next if k == :id
+        next if self.class.instance_methods(false).include?(k)
+        self.class.class_eval %[
+          def #{k}
+            @values[:#{k}]
           end
-        end
+
+          def #{k}=(v)
+            @values[:#{k}] = v
+            @dirty_values.add(:#{k})
+          end
+        ]
       end
     end
   end
