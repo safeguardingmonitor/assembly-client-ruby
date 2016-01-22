@@ -6,7 +6,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'assembly', github: 'neonadventures/assembly-client-ruby'
+gem 'assembly', github: 'assembly-edu/assembly-client-ruby'
 
 ```
 

@@ -7,3 +7,13 @@
 /pkg/
 /spec/reports/
 /tmp/
+
+# Ignore RVM files
+.ruby-*
+
+# Ignore IntelliJ files
+.generators
+.rakeTasks
+*.iml
+.idea
+

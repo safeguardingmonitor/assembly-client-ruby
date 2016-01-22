@@ -74,6 +74,8 @@ module Assembly
         faraday.response :json
         faraday.adapter  Faraday.default_adapter
       end
+      refresh_api.headers[:accept] = "application/vnd.assembly+json; version=#{config.api_version}"
+
       response = refresh_api.post('/oauth/token', {
         client_id:      config.client_id,
         client_secret:  config.client_secret,
@@ -114,6 +116,7 @@ module Assembly
         faraday.response :json
         faraday.adapter  Faraday.default_adapter
       end
+      @api.headers[:accept] = "application/vnd.assembly+json; version=#{config.api_version}"
     end
   end
 
