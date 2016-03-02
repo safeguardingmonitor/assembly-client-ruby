@@ -92,13 +92,19 @@ module Assembly
     private
 
     def check_errors(response)
-      raise Assembly::ServerError.new(response) if response.status >= 500
-      raise Assembly::ValidationError.new(response) if response.status == 422
-      if response.status == 401
-        handle_unauthorized_response(response)
-        return false
+      case response.status
+        when 401
+          handle_unauthorized_response(response)
+          return false
+        when 422
+          raise Assembly::ValidationError.new(response)
+        when 429
+          raise Assembly::TooManyRequestsError.new(response)
+        when 500
+          raise Assembly::ServerError.new(response)
+        when response.status > 400
+          raise Assembly::NotFoundError.new(response)
       end
-      raise Assembly::NotFoundError.new(response) if response.status >= 400
       true
     end
 
@@ -141,6 +147,9 @@ module Assembly
     def to_s
       "[#{status}] #{message}"
     end
+  end
+
+  class TooManyRequestsError < ServerError
   end
 
   class NotFoundError < ServerError
