@@ -5,7 +5,7 @@ module Assembly
     end
 
     def self.path
-      "/api/#{Util.underscore(self.class_name)}s"
+      "/#{Util.underscore(self.class_name)}s"
     end
   end
 end

@@ -3,7 +3,7 @@ require 'test_helper'
 describe Assembly::Config do
   it "gets default config in inititalization" do
     config = Assembly::Config.new
-    assert_equal "https://platform.assembly.education", config.host
+    assert_equal "https://api.assembly.education", config.host
   end
 
   it "allows merging config options" do
@@ -15,7 +15,7 @@ describe Assembly::Config do
   it "allows overriding a cop of the config options" do
     config = Assembly::Config.new
     new_config = config.copy_with_overrides(host: 'http://test.com')
-    assert_equal "https://platform.assembly.education", config.host
+    assert_equal "https://api.assembly.education", config.host
     assert_equal 'http://test.com', new_config.host
   end
 
