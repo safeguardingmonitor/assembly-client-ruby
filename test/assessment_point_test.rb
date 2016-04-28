@@ -6,7 +6,7 @@ describe Assembly::AssessmentPoint do
   it "can create an assessment point" do
     assessment_point_options = {name: 'test'}
     Assembly.client.expects(:post)
-      .with("/api/assessment_points", assessment_point_options)
+      .with("/assessment_points", assessment_point_options)
       .returns(example_assessment_point)
     ap = Assembly::AssessmentPoint.create(assessment_point_options)
     assert_equal Assembly::AssessmentPoint, ap.class
@@ -17,7 +17,7 @@ describe Assembly::AssessmentPoint do
   it "can fetch an assessment point" do
     id = 28
     Assembly.client.expects(:get)
-      .with("/api/assessment_points/#{id}")
+      .with("/assessment_points/#{id}")
       .returns(example_assessment_point)
     ap = Assembly::AssessmentPoint.fetch(id)
     assert_equal Assembly::AssessmentPoint, ap.class
@@ -27,7 +27,7 @@ describe Assembly::AssessmentPoint do
     id = 28
     client = Assembly.client(token: 'another_token')
     client.expects(:get)
-      .with("/api/assessment_points/#{id}")
+      .with("/assessment_points/#{id}")
       .returns(example_assessment_point)
     Assembly::AssessmentPoint.fetch(id, client)
   end
@@ -35,10 +35,10 @@ describe Assembly::AssessmentPoint do
   it "can delete an assessment_point" do
     id = 28
     Assembly.client.expects(:get)
-      .with("/api/assessment_points/#{id}")
+      .with("/assessment_points/#{id}")
       .returns(example_assessment_point)
     Assembly.client.expects(:delete)
-      .with("/api/assessment_points/#{id}")
+      .with("/assessment_points/#{id}")
       .returns(example_assessment_point)
     ap = Assembly::AssessmentPoint.fetch(id)
     assert_equal true, ap.delete
@@ -47,7 +47,7 @@ describe Assembly::AssessmentPoint do
   it "can delete an assessment_point by id" do
     id = 28
     Assembly.client.expects(:delete)
-      .with("/api/assessment_points/#{id}")
+      .with("/assessment_points/#{id}")
       .returns(example_assessment_point)
     assert_equal true, Assembly::AssessmentPoint.delete(id)
   end

@@ -13,7 +13,7 @@ describe Assembly::Client do
   end
 
   it "runs a block when the token is refreshed" do
-    stub_request(:post, "https://platform.assembly.education/oauth/token").
+    stub_request(:post, "https://api.assembly.education/oauth/token").
       with(body: {client_id: "id", client_secret: "secret", grant_type: "refresh_token", refresh_token: "refresh_token"},
            headers: {'Accept'=>'application/vnd.assembly+json; version=1', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Faraday v0.9.2'}).
       to_return(status: 200, body: '{"access_token": "new_access_token"}')
@@ -30,15 +30,15 @@ describe Assembly::Client do
   end
 
   it "refreshes the token when a token_invalid response is given" do
-    stub_request(:get, "https://platform.assembly.education/api/students?access_token=old_access_token").
+    stub_request(:get, "https://api.assembly.education/students?access_token=old_access_token").
       with(headers: {'Accept'=>'application/vnd.assembly+json; version=1'}).
       to_return({ status: 401, body: '{"error": "invalid_token", "message": "token has expired"}' })
 
-    stub_request(:get, "https://platform.assembly.education/api/students?access_token=new_access_token").
+    stub_request(:get, "https://api.assembly.education/students?access_token=new_access_token").
       with(headers: {'Accept'=>'application/vnd.assembly+json; version=1'}).
       to_return({ status: 200, body: '{}' })
 
-    stub_request(:post, "https://platform.assembly.education/oauth/token").
+    stub_request(:post, "https://api.assembly.education/oauth/token").
       with(body: {client_id: "id", client_secret: "secret", grant_type: "refresh_token", refresh_token: "refresh_token"},
            headers: {'Accept'=>'application/vnd.assembly+json; version=1', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Faraday v0.9.2'}).
       to_return(status: 200, body: '{"access_token": "new_access_token"}')
@@ -49,7 +49,7 @@ describe Assembly::Client do
     client.on_token_refresh do |new_access_token|
       access_token = new_access_token[:access_token]
     end
-    client.get("/api/students")
+    client.get("/students")
     assert_equal 'new_access_token', access_token
   end
 end
