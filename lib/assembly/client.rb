@@ -1,15 +1,16 @@
 module Assembly
   class Client
     attr_reader :config
+
     def initialize(config=Assembly.config)
-      @config = config
+      @config           = config
       @on_token_refresh = nil
       build_api_adapter
     end
 
     def get(url, params={})
       response = @api.get url, params
-      ok = check_errors(response)
+      ok       = check_errors(response)
       if ok
         response.body
       else
@@ -69,18 +70,17 @@ module Assembly
 
     def refresh_token!
       return false unless config.client_id && config.client_secret && config.refresh_token
-      refresh_api = Faraday.new(:url => config.host) do |faraday|
+      refresh_api                         = Faraday.new(:url => config.host) do |faraday|
         faraday.request :url_encoded
         faraday.response :json
-        faraday.adapter  Faraday.default_adapter
+        faraday.adapter Faraday.default_adapter
       end
-      refresh_api.headers[:accept] = "application/vnd.assembly+json; version=#{config.api_version}"
+      refresh_api.headers[:accept]        = "application/vnd.assembly+json; version=#{config.api_version}"
+      refresh_api.headers[:authorization] = refresh_api.basic_auth(config.client_id, config.client_secret)
 
       response = refresh_api.post('/oauth/token', {
-        client_id:      config.client_id,
-        client_secret:  config.client_secret,
-        grant_type:     'refresh_token',
-        refresh_token:  config.refresh_token
+        grant_type:    'refresh_token',
+        refresh_token: config.refresh_token
       })
       return false unless check_errors(response)
       config.token = response.body[:access_token]
@@ -110,11 +110,11 @@ module Assembly
     end
 
     def build_api_adapter
-      @api = Faraday.new(:url => config.host) do |faraday|
-        faraday.request  :json
-        faraday.request  :oauth2, config.token
+      @api                  = Faraday.new(:url => config.host) do |faraday|
+        faraday.request :json
+        faraday.request :oauth2, config.token
         faraday.response :json
-        faraday.adapter  Faraday.default_adapter
+        faraday.adapter Faraday.default_adapter
       end
       @api.headers[:accept] = "application/vnd.assembly+json; version=#{config.api_version}"
     end
