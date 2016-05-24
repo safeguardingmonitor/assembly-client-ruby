@@ -70,7 +70,7 @@ module Assembly
 
     def refresh_token!
       return false unless config.client_id && config.client_secret && config.refresh_token
-      refresh_api                         = Faraday.new(:url => config.host) do |faraday|
+      refresh_api = Faraday.new(:url => config.auth_host) do |faraday|
         faraday.request :url_encoded
         faraday.response :json
         faraday.adapter Faraday.default_adapter

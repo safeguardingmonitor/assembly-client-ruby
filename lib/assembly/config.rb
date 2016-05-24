@@ -1,11 +1,12 @@
 module Assembly
   class Config
 
-    attr_accessor :host, :token, :refresh_token, :client_id, :client_secret, :api_version
+    attr_accessor :host, :auth_host, :token, :refresh_token, :client_id, :client_secret, :api_version
 
     def initialize(options={})
-      @host = "https://api.assembly.education"
-      @api_version = 1
+      @host         = "https://api.assembly.education"
+      @auth_host    = "https://platform.assembly.education"
+      @api_version  = 1
       merge(options)
     end
 
