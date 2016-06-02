@@ -27,8 +27,8 @@ module Assembly
         end
 
         if model_class.included_modules.include?(Assembly::Actions::Read)
-          def fetch(id)
-            model_class.fetch(id, @client)
+          def fetch(id, params={})
+            model_class.fetch(id, params, @client)
           end
           alias_method :find, :fetch
         end

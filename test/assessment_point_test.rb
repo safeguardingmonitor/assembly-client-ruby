@@ -17,7 +17,7 @@ describe Assembly::AssessmentPoint do
   it "can fetch an assessment point" do
     id = 28
     Assembly.client.expects(:get)
-      .with("/assessment_points/#{id}")
+      .with("/assessment_points/#{id}", {})
       .returns(example_assessment_point)
     ap = Assembly::AssessmentPoint.fetch(id)
     assert_equal Assembly::AssessmentPoint, ap.class
@@ -27,15 +27,15 @@ describe Assembly::AssessmentPoint do
     id = 28
     client = Assembly.client(token: 'another_token')
     client.expects(:get)
-      .with("/assessment_points/#{id}")
+      .with("/assessment_points/#{id}", {})
       .returns(example_assessment_point)
-    Assembly::AssessmentPoint.fetch(id, client)
+    Assembly::AssessmentPoint.fetch(id, {}, client)
   end
 
   it "can delete an assessment_point" do
     id = 28
     Assembly.client.expects(:get)
-      .with("/assessment_points/#{id}")
+      .with("/assessment_points/#{id}", {})
       .returns(example_assessment_point)
     Assembly.client.expects(:delete)
       .with("/assessment_points/#{id}")
