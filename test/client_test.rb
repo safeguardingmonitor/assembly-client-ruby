@@ -30,12 +30,14 @@ describe Assembly::Client do
   end
 
   it "refreshes the token when a token_invalid response is given" do
-    stub_request(:get, "https://api.assembly.education/students?access_token=old_access_token").
-      with(headers: { 'Accept' => 'application/vnd.assembly+json; version=1' }).
+    stub_request(:get, "https://api.assembly.education/students").
+      with(headers: { 'Accept' => 'application/vnd.assembly+json; version=1',
+                      'Authorization'=>'Bearer old_access_token' }).
       to_return({ status: 401, body: '{"error": "invalid_token", "message": "token has expired"}' })
 
-    stub_request(:get, "https://api.assembly.education/students?access_token=new_access_token").
-      with(headers: { 'Accept' => 'application/vnd.assembly+json; version=1' }).
+    stub_request(:get, "https://api.assembly.education/students").
+      with(headers: { 'Accept' => 'application/vnd.assembly+json; version=1',
+                      'Authorization'=>'Bearer new_access_token' }).
       to_return({ status: 200, body: '{}' })
 
     stub_request(:post, "https://id:secret@platform.assembly.education/oauth/token").

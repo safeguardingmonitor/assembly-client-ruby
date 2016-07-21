@@ -6,6 +6,7 @@ require "ostruct"
 require "faraday"
 require "faraday_middleware"
 
+require 'assembly/faraday_middleware/assembly_oauth2'
 require 'assembly/util'
 require 'assembly/config'
 require 'assembly/client'
