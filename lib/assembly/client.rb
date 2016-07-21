@@ -110,9 +110,9 @@ module Assembly
     end
 
     def build_api_adapter
-      @api                  = Faraday.new(:url => config.host) do |faraday|
+      @api = Faraday.new(:url => config.host) do |faraday|
         faraday.request :json
-        faraday.request :oauth2, config.token
+        faraday.request :assembly_oauth2, config.token
         faraday.response :json
         faraday.adapter Faraday.default_adapter
       end
