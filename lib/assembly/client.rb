@@ -64,6 +64,10 @@ module Assembly
       Assembly::StaffMemberResource.new(self)
     end
 
+    def academic_years
+      Assembly::AcademicYearResource.new(self)
+    end
+
     def on_token_refresh(&blk)
       @on_token_refresh = blk
     end
