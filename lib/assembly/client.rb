@@ -96,18 +96,19 @@ module Assembly
     private
 
     def check_errors(response)
-      case response.status
+      status = response.status.to_i
+      case status
         when 401
           handle_unauthorized_response(response)
           return false
+        when 404
+          raise Assembly::NotFoundError.new(response)
         when 422
           raise Assembly::ValidationError.new(response)
         when 429
           raise Assembly::TooManyRequestsError.new(response)
         when 500
           raise Assembly::ServerError.new(response)
-        when response.status > 400
-          raise Assembly::NotFoundError.new(response)
       end
       true
     end
