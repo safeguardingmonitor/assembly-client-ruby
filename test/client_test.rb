@@ -13,9 +13,9 @@ describe Assembly::Client do
   end
 
   it "runs a block when the token is refreshed" do
-    stub_request(:post, "https://id:secret@platform.assembly.education/oauth/token").
+    stub_request(:post, "https://platform.assembly.education/oauth/token").
       with(:body => { "grant_type" => "refresh_token", "refresh_token" => "refresh_token" },
-        :headers => { 'Accept' => 'application/vnd.assembly+json; version=1', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type' => 'application/x-www-form-urlencoded', 'User-Agent' => 'Faraday v0.9.2' }).
+        :headers => { 'Accept' => 'application/vnd.assembly+json; version=1', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Basic aWQ6c2VjcmV0', 'Content-Type' => 'application/x-www-form-urlencoded', 'User-Agent' => 'Faraday v0.13.1' }).
       to_return(status: 200, body: '{"access_token": "new_access_token"}')
 
 
@@ -40,9 +40,9 @@ describe Assembly::Client do
                       'Authorization'=>'Bearer new_access_token' }).
       to_return({ status: 200, body: '{}' })
 
-    stub_request(:post, "https://id:secret@platform.assembly.education/oauth/token").
+    stub_request(:post, "https://platform.assembly.education/oauth/token").
       with(:body => { "grant_type" => "refresh_token", "refresh_token" => "refresh_token" },
-        :headers => { 'Accept' => 'application/vnd.assembly+json; version=1', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type' => 'application/x-www-form-urlencoded', 'User-Agent' => 'Faraday v0.9.2' }).
+        :headers => { 'Accept' => 'application/vnd.assembly+json; version=1', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Basic aWQ6c2VjcmV0', 'Content-Type' => 'application/x-www-form-urlencoded', 'User-Agent' => 'Faraday v0.13.1' }).
       to_return(status: 200, body: '{"access_token": "new_access_token"}')
 
     access_token = 'old_access_token'
