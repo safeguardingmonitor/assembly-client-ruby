@@ -19,7 +19,7 @@ Assembly.configure do |config|
   config.host  = 'https://api-sandbox.assembly.education/'       # For sandbox testing. Use https://api.assembly.education/ for production
   config.token = 'my_oauth_access_token'
 
-  # You do not need this configuration for a quick play with the API. It's only needed for the refrech token OAuth flow.
+  # You do not need this configuration for a quick play with the API. It's only needed for the refresh token OAuth flow.
   config.auth_host     = 'https://platform-sandbox.assembly.education/'  # For sandbox testing. Use https://platform.assembly.education/ for production
   config.refresh_token = 'my_oauth_refresh_token'
   config.client_id     = 'my_app_id'
