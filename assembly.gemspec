@@ -19,9 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "faraday",            "~> 0.13.1"
-  spec.add_dependency "faraday_middleware", "~> 0.13.1"
+  spec.add_dependency "faraday_middleware", "~> 0.12.2"
 
-  spec.add_development_dependency "bundler",            "~> 1.15.4"
+  spec.add_development_dependency "bundler",            "~> 1.15"
   spec.add_development_dependency "rake",               "~> 12.1"
   spec.add_development_dependency "mocha",              "~> 1.3"
   spec.add_development_dependency "webmock",            "~> 3.0"
