@@ -1,8 +1,8 @@
 module Assembly
-  class Student < ApiModel
+  class Subject < ApiModel
     include Assembly::Actions::Read
     include Assembly::Actions::List
   end
 
-  Resource.build(Student)
+  Resource.build(Subject)
 end
