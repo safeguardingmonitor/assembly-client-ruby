@@ -36,8 +36,8 @@ module Assembly
       response.status == 200
     end
 
-    def grade_sets
-      Assembly::GradeSetResource.new(self)
+    def academic_years
+      Assembly::AcademicYearResource.new(self)
     end
 
     def assessment_points
@@ -48,24 +48,44 @@ module Assembly
       Assembly::AspectResource.new(self)
     end
 
+    def calendar_events
+      Assembly::CalendarEventResource.new(self)
+    end
+
+    def contacts
+      Assembly::ContactResource.new(self)
+    end
+
+    def grade_sets
+      Assembly::GradeSetResource.new(self)
+    end
+
+    def registration_groups
+      Assembly::RegistrationGroupResource.new(self)
+    end
+
     def results
       Assembly::ResultResource.new(self)
     end
 
-    def teaching_groups
-      Assembly::TeachingGroupResource.new(self)
-    end
-
-    def students
-      Assembly::StudentResource.new(self)
+    def school_details
+      Assembly::SchoolDetailResource.new(self)
     end
 
     def staff_members
       Assembly::StaffMemberResource.new(self)
     end
 
-    def academic_years
-      Assembly::AcademicYearResource.new(self)
+    def students
+      Assembly::StudentResource.new(self)
+    end
+
+    def subjects
+      Assembly::SubjectResource.new(self)
+    end
+
+    def teaching_groups
+      Assembly::TeachingGroupResource.new(self)
     end
 
     def on_token_refresh(&blk)

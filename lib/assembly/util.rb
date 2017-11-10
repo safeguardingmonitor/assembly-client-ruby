@@ -8,13 +8,18 @@ module Assembly
       {
         list: List,
         assessment_point: AssessmentPoint,
+        calendar_event: CalendarEvent,
+        contact: Contact,
         grade_set: GradeSet,
         grade: Grade,
         aspect: Aspect,
+        registration_group: RegistrationGroup,
         result: Result,
         teaching_group: TeachingGroup,
-        student: Student,
+        school_detail: SchoolDetail,
         staff_member: StaffMember,
+        student: Student,
+        subject: Subject,
       }
     end
 

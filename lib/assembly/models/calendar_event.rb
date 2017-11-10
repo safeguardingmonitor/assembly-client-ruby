@@ -1,8 +1,8 @@
 module Assembly
-  class Student < ApiModel
+  class CalendarEvent < ApiModel
     include Assembly::Actions::Read
     include Assembly::Actions::List
   end
 
-  Resource.build(Student)
+  Resource.build(CalendarEvent)
 end
