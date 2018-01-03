@@ -1,7 +1,7 @@
 module Assembly
-  class SchoolDetail < ApiModel
+  class Exclusion < ApiModel
     include Assembly::Actions::List
   end
 
-  Resource.build(SchoolDetail)
+  Resource.build(Exclusion)
 end

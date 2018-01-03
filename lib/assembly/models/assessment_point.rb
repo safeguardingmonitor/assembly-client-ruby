@@ -2,8 +2,10 @@ module Assembly
   class AssessmentPoint < ApiModel
     include Assembly::Actions::Read
     include Assembly::Actions::List
-    include Assembly::Actions::Create
-    include Assembly::Actions::Delete
+
+    def results(params={})
+      pages(path + "#{rank}/results", params)
+    end
   end
 
   Resource.build(AssessmentPoint)

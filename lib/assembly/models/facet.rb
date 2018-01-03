@@ -1,8 +1,8 @@
 module Assembly
-  class StaffMember < ApiModel
+  class Facet < ApiModel
     include Assembly::Actions::Read
     include Assembly::Actions::List
   end
 
-  Resource.build(StaffMember)
+  Resource.build(Facet)
 end

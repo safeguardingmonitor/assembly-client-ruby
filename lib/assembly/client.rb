@@ -9,7 +9,11 @@ module Assembly
     end
 
     def get(url, params={})
-      response = @api.get url, params
+      if_modified_since = params.delete(:since)
+      headers = {}
+      headers.merge!({ 'IF_MODIFIED_SINCE': if_modified_since }) if if_modified_since
+
+      response = @api.get(url, params, headers)
       ok       = check_errors(response)
       if ok
         response.body
@@ -38,6 +42,10 @@ module Assembly
 
     def academic_years
       Assembly::AcademicYearResource.new(self)
+    end
+
+    def assessments
+      Assembly::AssessmentResource.new(self)
     end
 
     def assessment_points
@@ -72,6 +80,10 @@ module Assembly
       Assembly::SchoolDetailResource.new(self)
     end
 
+    def facets
+      Assembly::FacetResource.new(self)
+    end
+
     def staff_members
       Assembly::StaffMemberResource.new(self)
     end
@@ -86,6 +98,18 @@ module Assembly
 
     def teaching_groups
       Assembly::TeachingGroupResource.new(self)
+    end
+
+    def attendances
+      Assembly::AttendanceResource.new(self)
+    end
+
+    def exclusions
+      Assembly::ExclusionResource.new(self)
+    end
+
+    def year_groups
+      Assembly::YearGroupResource.new(self)
     end
 
     def on_token_refresh(&blk)
