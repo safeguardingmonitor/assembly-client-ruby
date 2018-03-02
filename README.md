@@ -6,7 +6,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'assembly', github: 'assembly-edu/assembly-client-ruby'
+gem 'assembly-client', '~> 0.7'
 
 ```
 
