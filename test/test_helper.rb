@@ -1,5 +1,5 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'assembly'
+require 'assembly_client'
 require 'test_data'
 
 require 'minitest/autorun'

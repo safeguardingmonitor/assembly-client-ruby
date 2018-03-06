@@ -15,7 +15,7 @@ gem 'assembly-client', '~> 0.8.0'
 Some examples of how to pull information from the Assembly Platform API using the client Gem.
 
 ```ruby
-require 'assembly'
+require 'assembly-client'
 
 Assembly.configure do |config|
   config.host  = 'https://api-sandbox.assembly.education/'       # For sandbox testing. Use https://api.assembly.education/ for production

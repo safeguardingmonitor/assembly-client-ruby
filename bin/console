@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "assembly"
+require "assembly_client"
 
 Assembly.configure do |config|
   config.token = '3z1678w3qstvanq6x1r8f0b2mcjefjv'
